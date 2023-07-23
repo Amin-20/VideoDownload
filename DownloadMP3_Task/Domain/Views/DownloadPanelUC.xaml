@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="DownloadMP3_Task.Views.DownloadPanelUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DownloadMP3_Task.Views"
+             mc:Ignorable="d" 
+             Height="200" Width="500">
+    <Grid>
+        <Canvas Background="white">
+
+            <TextBlock Canvas.Left="13" Canvas.Top="25" Text="Enter URL" FontWeight="DemiBold" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+
+            <TextBox Canvas.Left="88" Canvas.Top="20" Height="30" FontSize="20" Width="400" Text="{Binding URLToDownload, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+
+            <TextBlock Canvas.Left="30" Canvas.Top="60" Text="Author : " FontSize="14"></TextBlock>
+            <TextBlock Canvas.Left="130" Canvas.Top="60" Text="{Binding Video.Info.Author}"  FontSize="14"  FontWeight="DemiBold"></TextBlock>
+
+            <TextBlock Canvas.Left="30" Canvas.Top="90" Text="Video Title : " FontSize="14"></TextBlock>
+            <TextBlock Canvas.Left="130" Canvas.Top="90" Text="{Binding Video.Title}" TextWrapping="Wrap"  FontSize="14"  FontWeight="DemiBold"></TextBlock>
+
+            <TextBlock Canvas.Left="30" Canvas.Top="120" Text="Video Duration : " FontSize="14"></TextBlock>
+            <TextBlock Canvas.Left="130" Canvas.Top="120" Text="{Binding Video.Info.LengthSeconds}"  FontSize="16" FontWeight="DemiBold"></TextBlock>
+            <TextBlock Text=" sec"  FontSize="14" Canvas.Left="154" Canvas.Top="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <ProgressBar Name="progressBar" Height="20" Width="350" Value="{Binding ProgressValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding MaxProgressValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         Minimum="{Binding MinProgressValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="131" Canvas.Top="161" HorizontalAlignment="Left" VerticalAlignment="Center"></ProgressBar>
+            <TextBlock Canvas.Right="30" Canvas.Top="140" Text="{Binding Duration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+
+            <Button Width="100" Height="40" BorderThickness="0" Background="LimeGreen" Foreground="White"
+                        Content="Start Download" FontSize="10" Command="{Binding StartDownloaderCommand}" Canvas.Left="12" Canvas.Top="153">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10,10,10,10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Canvas>
+    </Grid>
+</UserControl>
